@@ -1,11 +1,18 @@
 #!/usr/bin/env ruby
 
+require 'json'
+
 $LOAD_PATH << File.dirname(__FILE__) + "/../lib/"
 
 require 'search_runner'
+require 'alert_runner'
 
-s = SearchRunner.new(
+search_runner = SearchRunner.new(
   access_id: ENV.fetch('SUMOLOGIC_ACCESS_ID'),
   access_key: ENV.fetch('SUMOLOGIC_ACCESS_KEY')
 )
-s.run
+
+AlertRunner.new(
+  File.dirname(__FILE__) + "/../data/prod.json", 
+  search_runner: search_runner
+).run!
