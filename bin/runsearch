@@ -1,0 +1,11 @@
+#!/usr/bin/env ruby
+
+$LOAD_PATH << File.dirname(__FILE__) + "/../lib/"
+
+require 'search_runner'
+
+s = SearchRunner.new(
+  access_id: ENV.fetch('SUMOLOGIC_ACCESS_ID'),
+  access_key: ENV.fetch('SUMOLOGIC_ACCESS_KEY')
+)
+s.run
