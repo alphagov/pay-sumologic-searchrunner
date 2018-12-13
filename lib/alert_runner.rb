@@ -15,7 +15,7 @@ class AlertRunner
 
   def run!
     searches.each do |search|
-      puts search['name']
+      puts "Re-running '#{search['name']}' between #{from_time} and #{to_time}"
       query = search['searchQuery']
       matcher = ThresholdMatcher.for(search.fetch('schedules', {})['thresholdOption'])
       if matcher
